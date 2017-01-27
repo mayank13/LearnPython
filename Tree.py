@@ -23,6 +23,13 @@ class Tree:
         self.preorder(root.leftNode)
         self.preorder(root.rightNode)
 
+    def inorder(self, root):
+        if root is None:
+            return
+        self.inorder(root.leftNode)
+        print(root.value)
+        self.inorder(root.rightNode)
+
 nodeTest = Node()
 print(nodeTest)
 print(Node)
@@ -42,5 +49,7 @@ node2.leftNode = node4
 node2.rightNode = node5
 node3.leftNode = node6
 node3.rightNode = node7
-
+print('----Preorder----')
 tree.preorder(rootNode)
+print('----Inorder----')
+tree.inorder(rootNode)
