@@ -30,6 +30,13 @@ class Tree:
         print(root.value)
         self.inorder(root.rightNode)
 
+    def postorder(self, root):
+        if root is None:
+            return
+        self.postorder(root.leftNode)
+        self.postorder(root.rightNode)
+        print(root.value)
+
 nodeTest = Node()
 print(nodeTest)
 print(Node)
@@ -53,3 +60,6 @@ print('----Preorder----')
 tree.preorder(rootNode)
 print('----Inorder----')
 tree.inorder(rootNode)
+print('----Postorder----')
+tree.postorder(rootNode)
+
