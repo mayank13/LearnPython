@@ -75,10 +75,16 @@ print('---Binary Tee---')
 bt2.preorder(bt2.root)
 
 # -- Queue Test --
-q2 = deque([1, 2, 3])
-print(q2.popleft())
-print(q2.popleft())
-print(q2.popleft())
+# q2 = deque([1, 2, 3])
+# print(q2.popleft())
+# print(q2.popleft())
+# print(q2.popleft())
 #el = q2.popleft()
 #print(el)
 
+bt3 = BinaryTree()
+bt3Nodes = [1,2,5,3,4,6,7]
+for i in range(len(bt3Nodes)):
+    bt3.add_node_inorder(Node(bt3Nodes[i]))
+print("--Pre Order Traversal")
+bt3.preorder(bt3.root)
