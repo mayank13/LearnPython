@@ -1,9 +1,12 @@
 from Tree import Node
+from collections import deque
 
 
 class BinaryTree:
     def __init__(self, root=None):
         self.root = root
+        self.noOfLeftNodes = 0
+        self.noOfRightNodes = 0
 
     def addNode(self, root, node):
         if self.root is None:
@@ -11,14 +14,18 @@ class BinaryTree:
             return
         if root.leftNode is None:
             root.leftNode = node
+            self.noOfLeftNodes += 1
             return
         elif root.rightNode is None:
             root.rightNode = node
+            self.noOfRightNodes += 1
             return
 
         else:
-            self.addNode(root.leftNode, node)
-
+            if self.noOfLeftNodes - self.noOfRightNodes < 2:
+                self.addNode(root.leftNode, node)
+            else:
+                self.addNode(root.rightNode, node)
 
     def preorder(self, root):
         if root is None:
@@ -27,6 +34,27 @@ class BinaryTree:
         self.preorder(root.leftNode)
         self.preorder(root.rightNode)
 
+    def add_node_inorder(self, node):
+        queue = deque([])
+        if self.root is None:
+            self.root = node
+            return
+        queue.append(self.root)
+        curr_node = self.root
+        while curr_node is not None:
+            curr_node = queue.popleft()
+            if curr_node.leftNode is not None:
+                queue.append(curr_node.leftNode)
+            else:
+                curr_node.leftNode = node
+                return
+            if curr_node.rightNode is not None:
+                queue.append(curr_node.rightNode)
+            else:
+                curr_node.rightNode = node
+                return
+        return self.root
+
 
 bt = BinaryTree()
 nodes = [1, 2, 3, 4, 5, 6, 7]
@@ -34,3 +62,23 @@ for i in range(len(nodes)):
     bt.addNode(bt.root, Node(nodes[i]))
 print('---Binary Tee---')
 bt.preorder(bt.root)
+
+bt2 = BinaryTree()
+bt2.add_node_inorder(Node(1))
+bt2.add_node_inorder(Node(2))
+bt2.add_node_inorder(Node(3))
+bt2.add_node_inorder(Node(4))
+bt2.add_node_inorder(Node(5))
+bt2.add_node_inorder(Node(6))
+bt2.add_node_inorder(Node(6))
+print('---Binary Tee---')
+bt2.preorder(bt2.root)
+
+# -- Queue Test --
+q2 = deque([1, 2, 3])
+print(q2.popleft())
+print(q2.popleft())
+print(q2.popleft())
+#el = q2.popleft()
+#print(el)
+

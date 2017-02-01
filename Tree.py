@@ -6,8 +6,8 @@ class Node:
         self.leftNode = leftNode
         self.rightNode = rightNode
 
-        # def __str__(self):
-        #     return ' Node value --> %s' % self.value
+    def __str__(self):
+        return ' Node value --> %s' % self.value
 
 
 class Tree:
@@ -37,6 +37,7 @@ class Tree:
         self.postorder(root.rightNode)
         print(root.value)
 
+
 nodeTest = Node()
 print(nodeTest)
 print(Node)
@@ -62,4 +63,3 @@ print('----Inorder----')
 tree.inorder(rootNode)
 print('----Postorder----')
 tree.postorder(rootNode)
-
