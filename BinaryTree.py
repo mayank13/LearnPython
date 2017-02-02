@@ -73,9 +73,10 @@ class BinaryTree:
         queue.append("EOL")
         while queue:
             curr = queue.popleft()
-            if curr == "EOL":
-                queue.append("EOL")
-                level += 1
+            if curr == "EOL" :
+                if queue:
+                    queue.append("EOL")
+                    level += 1
             else:
                 print("level-" + str(level))
                 print(curr)
