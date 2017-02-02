@@ -41,7 +41,7 @@ class BinaryTree:
             return
         queue.append(self.root)
         curr_node = self.root
-        while curr_node is not None:
+        while queue:
             curr_node = queue.popleft()
             if curr_node.leftNode is not None:
                 queue.append(curr_node.leftNode)
