@@ -34,6 +34,17 @@ class BinaryTree:
         self.preorder(root.leftNode)
         self.preorder(root.rightNode)
 
+    def levelorder(self, root):
+        queue = deque([])
+        queue.append(root)
+        while queue:
+            curr = queue.popleft()
+            print(curr)
+            if curr.leftNode:
+                queue.append(curr.leftNode)
+            if curr.rightNode:
+                queue.append(curr.rightNode)
+
     def add_node_inorder(self, node):
         queue = deque([])
         if self.root is None:
@@ -70,20 +81,22 @@ bt2.add_node_inorder(Node(3))
 bt2.add_node_inorder(Node(4))
 bt2.add_node_inorder(Node(5))
 bt2.add_node_inorder(Node(6))
-bt2.add_node_inorder(Node(6))
-print('---Binary Tee---')
+bt2.add_node_inorder(Node(7))
+print('---Pre Order Traversal---')
 bt2.preorder(bt2.root)
+print("***Level Order Traversal***")
+bt2.levelorder(bt2.root)
 
 # -- Queue Test --
 # q2 = deque([1, 2, 3])
 # print(q2.popleft())
 # print(q2.popleft())
 # print(q2.popleft())
-#el = q2.popleft()
-#print(el)
+# el = q2.popleft()
+# print(el)
 
 bt3 = BinaryTree()
-bt3Nodes = [1,2,5,3,4,6,7]
+bt3Nodes = [1, 2, 5, 3, 4, 6, 7]
 for i in range(len(bt3Nodes)):
     bt3.add_node_inorder(Node(bt3Nodes[i]))
 print("--Pre Order Traversal")
