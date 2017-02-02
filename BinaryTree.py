@@ -66,6 +66,24 @@ class BinaryTree:
                 return
         return self.root
 
+    def level_wise(self, root):
+        queue = deque([])
+        level = 0
+        queue.append(root)
+        queue.append("EOL")
+        while queue:
+            curr = queue.popleft()
+            if curr == "EOL":
+                queue.append("EOL")
+                level += 1
+            else:
+                print("level-" + str(level))
+                print(curr)
+                if curr.leftNode:
+                    queue.append(curr.leftNode)
+                if curr.rightNode:
+                    queue.append(curr.rightNode)
+
 
 bt = BinaryTree()
 nodes = [1, 2, 3, 4, 5, 6, 7]
@@ -86,6 +104,8 @@ print('---Pre Order Traversal---')
 bt2.preorder(bt2.root)
 print("***Level Order Traversal***")
 bt2.levelorder(bt2.root)
+print("###Level Wise Traversal###")
+bt2.level_wise(bt2.root)
 
 # -- Queue Test --
 # q2 = deque([1, 2, 3])
